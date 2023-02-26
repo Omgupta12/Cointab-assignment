@@ -12,6 +12,7 @@ import {
   Select,
   FormLabel,
   HStack,
+  Text,
   Button,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -57,26 +58,24 @@ function User() {
     return <h1>....Loading</h1>;
   }
 
+  console.log("data",data)
   return (
     <>
-      <Heading mb={5}>User Details Page</Heading>
-      <Button colorScheme={"blackAlpha"}>
+      {/* <Heading mb={5}>User Details Page</Heading> */}
+      <Button colorScheme='green' mt={"2rem"}>
         <Link to="/">Go to Home</Link>
       </Button>
 
-      {loading}
-
       {data.length === 0 ? (
-        <Box mt={"-2rem"}>
-          {/* <Image w="60%" m="auto" src="./No_data.svg" /> */}
-        </Box>
+       <Text display={"flex"} justifyContent={"center"} alignItems={"center"} margin={"auto"} border={"1px dotted red"} height={"20vh"} textAlign={"center"} width={"50vw"}  mt={"2rem"}>No User details available, plaese fetch the Users</Text>
       ) : (
         <>
-          <Box pt={"2rem"} alignContent="left"></Box>
-          <HStack m={4}>
+        {loading}
+          <Box  alignContent="center"></Box>
+          <HStack m={4} display={"flex"} alignItems={"center"}>
             {/* Filter part */}
             <FormLabel>Filter By Gender</FormLabel>
-            <Select
+            <Select  border={"1px solid black"}
               placeholder="All"
               value={filter}
               w="150px"
@@ -85,30 +84,37 @@ function User() {
               <option value="male">Male</option>
               <option value="female">Female</option>
             </Select>
+
           </HStack>
+              {/* pagination part */}
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
+            handlePageChange={handleChangepage}
+          />
 
           {/* Table part */}
-          <TableContainer>
-            <Table variant="simple">
+          <TableContainer mb={"2em"}  >
+            <Table  colorScheme="red" >
               <Thead>
                 <Tr>
-                  <Th>Name</Th>
-                  <Th>Email</Th>
-                  <Th>Gender</Th>
-                  <Th>Location (country)</Th>
-                  <Th>Picture</Th>
+               
+                  <Th color={"red"} >Name</Th>
+                  <Th color={"red"}>Email</Th>
+                  <Th color={"red"}>Gender</Th>
+                  <Th color={"red"}>Location (country)</Th>
+                  
                 </Tr>
               </Thead>
               <Tbody>
                 {data &&
-                  data?.map((user, i) => {
+                  data?.map((el) => {
                     return (
-                      <Tr key={user.email}>
-                        <Td>{user.name}</Td>
-                        {/* <Td>{user.location.country}</Td> */}
-                        <Td>{user.email}</Td>
-                        <Td>{user.gender}</Td>
-                        <Td>{user.location}</Td>
+                      <Tr key={el._id}>
+                        <Td>{el.name}</Td>
+                        <Td>{el.email}</Td>
+                        <Td>{el.gender}</Td>
+                        <Td>{el.location}</Td>
                         <Td>
                           {/* <Image src={user.picture.medium} alt={user.name} /> */}
                         </Td>
@@ -119,12 +125,7 @@ function User() {
             </Table>
           </TableContainer>
 
-          {/* pagination part */}
-          <Pagination
-            totalPages={totalPages}
-            currentPage={page}
-            handlePageChange={handleChangepage}
-          />
+        
         </>
       )}
     </>

@@ -28,8 +28,8 @@ function Pagination({ totalPages, handlePageChange, currentPage }) {
     handlePageChange(val);
   };
   return (
-    <HStack spacing={"1rem"} justifyContent="center" alignItems={"center"}>
-      <Button
+    <HStack spacing={"1rem"} mt={"2em"} mb={"2em"} justifyContent="center" alignItems={"center"}>
+      <Button 
         isDisabled={currentPage === 1}
         border={"1px solid black"}
         onClick={() => handlePrev(currentPage - 1)}
@@ -37,7 +37,7 @@ function Pagination({ totalPages, handlePageChange, currentPage }) {
         Prev
       </Button>
       {pages}
-      <Button
+      <Button 
         isDisabled={currentPage === totalPages}
         border={"1px solid black"}
         onClick={() => handleNext(currentPage + 1)}

@@ -51,11 +51,11 @@ const Home = () => {
         border={"2px dotted red"}
         padding={"5rem"}
       >
-        <Button onClick={handleFetchUsers} disabled={isFetching}>
+        <Button colorScheme='yellow' onClick={handleFetchUsers} disabled={isFetching}>
           {isFetching ? "Fetching..." : "Fetch Users"}
         </Button>
-        <Button onClick={handleDeleteUsers}> Delete Users</Button>
-        <Button onClick={handleUserDetails}>User Details</Button>
+        <Button colorScheme='red' onClick={handleDeleteUsers}> Delete Users</Button>
+        <Button colorScheme='messenger' onClick={handleUserDetails}>User Details</Button>
       </ButtonGroup>
     </>
   );
