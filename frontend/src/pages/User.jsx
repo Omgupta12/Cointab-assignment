@@ -6,8 +6,6 @@ import {
   Th,
   Td,
   TableContainer,
-  Heading,
-  Image,
   Box,
   Select,
   FormLabel,
